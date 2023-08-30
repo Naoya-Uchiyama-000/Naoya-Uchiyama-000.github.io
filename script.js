@@ -1,36 +1,38 @@
 'use strict'
 
-//ページトップボタンの表示、非表示
+//ページトップボタンの表示、非表示//
 window.onload=function(){
-    let Animation = function() {
-    //アイコン位置取得
-    let pageTop =  document.getElementById('gotop');
-    console.log(pageTop);
-    //console.log(pageTop.style);
-    console.log(pageTop.classList);
-    //要素の位置座標を取得
-    let rect = pageTop.getBoundingClientRect();
-    //topからの距離
-    let scrollTop = rect.top + window.pageYOffset;
-    console.log("位置座標" + scrollTop)
-    if(scrollTop > 530){
-      pageTop.classList.add('show');
-     }  else {
-      pageTop.classList.remove('show');
-     }
-   }
-      window.addEventListener('scroll', Animation);
- }
+  let Animation = function() {
+  //アイコン位置取得
+  let pageTop =  document.getElementById('gotop');
+  console.log(pageTop);
+  //console.log(pageTop.style);
+  console.log(pageTop.classList);
+  //要素の位置座標を取得
+  let rect = pageTop.getBoundingClientRect();
+  //topからの距離
+  let scrollTop = rect.top + window.pageYOffset;
+  console.log("位置座標" + scrollTop)
+  if(scrollTop > 530){
+    pageTop.classList.add('show');
+    }  else {
+    pageTop.classList.remove('show');
+    }
+  }
+    window.addEventListener('scroll', Animation);
+}
 
- window.onscroll = function(){
-    // スクロールイベントの処理を記述
-    window.onload;
-  };
+window.onscroll = function(){
+  // スクロールイベントの処理を記述
+  window.onload;
+};
 
 /*アニメーションのコード*/
 const start = document.getElementById('start'); // 開始ボタン
 const reset = document.getElementById('reset'); // リセットボタン
 const showLater = document.getElementById("show-later");//結果表示
+let widthGame = document.getElementById("game-title");//車の移動距離を求める
+let  w = Math.floor(widthGame.getBoundingClientRect().width) - 100 ;//車の移動可能距離
 
 //順位を表示する
 let rank = "";
@@ -90,7 +92,7 @@ const move = function() {
         // 途中の状態を表す配列
         [
             { transform: 'translateX(0)'},    // 開始時の状態（左端）
-            { transform: 'translateX(600%)' } // 終了時の状態（右端）
+            { transform: `translateX(${w}px)` } // 終了時の状態（右端）
         ], 
         // タイミングに関する設定
         {
