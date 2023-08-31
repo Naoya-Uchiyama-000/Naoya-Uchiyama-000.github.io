@@ -1,140 +1,146 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>条件分岐の実装紹介！</title>
-  </head>
-  <header>
-    <div class = "top">
-      <h1>条件分岐の世界へようこそ！</h1>
+</head>
+<header>
+    <div class="top">
+        <h1>条件分岐の世界へようこそ！</h1>
     </div>
-  </header>
-  <body>
+</header>
+
+<body>
     <div class="flex">
-      <div class = "page-content">
-        <h2 class = "problem">～ day4 条件分岐入門 応用演習 より抜粋 ～</h2>
-        <h3>例題</h3>
-        <div class = "example">
-          
-          <p>randomStopLight という名前の関数を宣言してください。</p>
-            <p>この関数が呼び出されたら 0 以上 10 以下のランダムな整数を生成します。</p>
-            <p>生成された数字が</p>
-            <ul>
-              <li>3 未満であれば "🔴Red" 
-              <li>3 以上 6 以下であれば "🟡Yellow" 
-              <li>6 より大きければ "🟢Green" 
-            </ul>
-          <p>を返すようにしてください。 </p>
-          
-        </div>
-          <p>今回は0以上10以下のランダムな整数を生成する為に、</p>
-          <P>「Math」オブジェクトの<span>「random()」</span>メソッドと<span>「round() 」</span>メソッドを使用して解いていく。</p>
-        <h3>解き方</h3>
-        <div>
-            <h4>①関数を宣言</h4>
-            <p class = "function">
-                function randomStopLight () {};
-            </p>
-            <p class = "answer">今回は関数が呼び出されたらランダムな整数を生成する為、仮引数は無し。</p>
-            <h4>②<span>「random()」</span>メソッドと<span>「round() 」</span>メソッドの動きを確認</h4>
-            <p class = "answer">初めにMDNでメソッドの動きを調べてみる。</p>
-            <blockquote>
-                <p>
-                    Math.random() 関数は、<br>0 以上 1 未満 (0 は含むが、 1 は含まない) の範囲で浮動小数点の擬似乱数を返します。
-                    <br>
-                    <br>Math.round() 関数は、<br>引数として与えた数を四捨五入して、もっとも近似の整数を返します。
+        <div class="page-content">
+            <h2 class="problem">～ day4 条件分岐入門 応用演習 より抜粋 ～</h2>
+            <h3>例題</h3>
+            <div class="example">
+
+                <p>randomStopLight という名前の関数を宣言してください。</p>
+                <p>この関数が呼び出されたら 0 以上 10 以下のランダムな整数を生成します。</p>
+                <p>生成された数字が</p>
+                <ul>
+                    <li>3 未満であれば "🔴Red"
+                    <li>3 以上 6 以下であれば "🟡Yellow"
+                    <li>6 より大きければ "🟢Green"
+                </ul>
+                <p>を返すようにしてください。 </p>
+
+            </div>
+            <p>今回は0以上10以下のランダムな整数を生成する為に、</p>
+            <P>「Math」オブジェクトの<span>「random()」</span>メソッドと<span>「round() 」</span>メソッドを使用して解いていく。</p>
+            <h3>解き方</h3>
+            <div>
+                <h4>①関数を宣言</h4>
+                <p class="function">
+                    function randomStopLight () {};
                 </p>
-                <cite><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">MDNより引用</a></cite>
-            </blockquote>
-            <p class = "answer">文章だけではイメージしにくいので、実際にコンソールで動きを確認。</p>
-            <p class = "function">
-              >  Math.random();<br>
-              <･ 0.8758893563078609<br>
-              >  Math.round(4.5);<br>
-              <･ 5
-          </p>
-            <p class = "answer">上記より、Math.random()とMath.round()の組み合わせで出来そう！</p>
-            <h4>③ランダムな1から10整数を作る</h4>
-            <ol>
-              <li>Math.random()でランダムな数字を作成。<br><span>Math.random();<span></li>
-              <li>0 以上 1 未満の小数点の為、×10を行い、0以上10未満の小数点にする。<br><span>Math.random()*10;<span></span></li>
-              <li>Math.round()で0以上10未満の小数点を四捨五入し、整数にする。<br><span>Math.raund(Math.random()*10);<span></span></li>
-            </ol>
-            <p class = "answer">実際の動きはコチラ↓</p>
-            <p class = "function">
-              >  Math.random();<br>
-              <･ 0.8758893563078609<br>
-              >  Math.random()*10;<br>
-              <･ 8.758893563078609<br>
-              >  Math.round(Math.random()*10);<br>
-              <･ 9
-            </p>
-            <h4>④最後に</h4>
-            <p class = "answer">問題は、</p><p>生成された数字が <br>3 未満であれば "🔴Red"<br>3 以上 6 以下であれば "🟡Yellow"<br>6 より大きければ "🟢Green"<br>を返す。 </p>
-            <p class = "answer">となっているので、③で作成したランダム整数作成プログラムをIF文で条件分岐させればOK！</p>
-            <p class = "function">
-              function randomStopLight () {<br>
-              　　let value = Math.round(Math.random()*10);<br>
-              　　～考えてみよう！～<br>
-              };
-            </p>
-            <h4>⑤ふとした疑問</h4>
-            <p class = "answer">JavaScriptはブラウザに動きを与える言語。</p>
-            <p class = "answer"> 今回のMath.random()とMath.round()は、ブラウザに対して実際にどのような動きを与えれるのか分からない。。。</p>
-            
-            <div id = "image4"><img  src="worry0.png" width="200" height="200" alt="site-logo"></div>
+                <p class="answer">今回は関数が呼び出されたらランダムな整数を生成する為、仮引数は無し。</p>
+                <h4>②<span>「random()」</span>メソッドと<span>「round() 」</span>メソッドの動きを確認</h4>
+                <p class="answer">初めにMDNでメソッドの動きを調べてみる。</p>
+                <blockquote>
+                    <p>
+                        Math.random() 関数は、<br>0 以上 1 未満 (0 は含むが、 1 は含まない) の範囲で浮動小数点の擬似乱数を返します。
+                        <br>
+                        <br>Math.round() 関数は、<br>引数として与えた数を四捨五入して、もっとも近似の整数を返します。
+                    </p>
+                    <cite><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">MDNより引用</a></cite>
+                </blockquote>
+                <p class="answer">文章だけではイメージしにくいので、実際にコンソールで動きを確認。</p>
+                <p class="function">
+                    > Math.random();<br>
+                    <･ 0.8758893563078609<br>
+                        > Math.round(4.5);<br>
+                        <･ 5 </p>
+                            <p class="answer">上記より、Math.random()とMath.round()の組み合わせで出来そう！</p>
+                            <h4>③ランダムな1から10整数を作る</h4>
+                            <ol>
+                                <li>Math.random()でランダムな数字を作成。<br><span>Math.random();<span></li>
+                                <li>0 以上 1 未満の小数点の為、×10を行い、0以上10未満の小数点にする。<br><span>Math.random()*10;<span></span></li>
+                                <li>Math.round()で0以上10未満の小数点を四捨五入し、整数にする。<br><span>Math.raund(Math.random()*10);<span></span></li>
+                            </ol>
+                            <p class="answer">実際の動きはコチラ↓</p>
+                            <p class="function">
+                                > Math.random();<br>
+                                <･ 0.8758893563078609<br>
+                                    > Math.random()*10;<br>
+                                    <･ 8.758893563078609<br>
+                                        > Math.round(Math.random()*10);<br>
+                                        <･ 9 </p>
+                                            <h4>④関数の中身を作る</h4>
+                                            <p class="answer">問題は、<br>関数が呼び出されたらランダムな整数が生成され、その値が</p>
+                                            <ul>
+                                                <li>3 未満であれば "🔴Red"
+                                                <li>3 以上 6 以下であれば "🟡Yellow"
+                                                <li>6 より大きければ "🟢Green"
+                                            </ul>
+                                            <p class="answer">を返す。<br>となっているので、③で作成したランダム整数作成プログラムをIF文で条件分岐させればOK！</p>
+                                            <p class="function">
+                                                function randomStopLight () {<br>
+                                                　　let value = Math.round(Math.random()*10);<br>
+                                                　　～考えてみよう！～<br>
+                                                };
+                                            </p>
+                                            <h4>⑤ふとした疑問</h4>
+                                            <p class="answer">JavaScriptはブラウザに動きを与える言語。</p>
+                                            <p class="answer"> 今回のMath.random()とMath.round()は、ブラウザに対して実際にどのような動きを与えれるのか分からない。。。</p>
+
+                                            <div id="image4"><img src="worry0.png" width="200" height="200" alt="site-logo"></div>
 
 
+            </div>
+            <h3>Let's play!</h3>
+            <p>　「random()」メソッドと「round() 」メソッドを使ったミニゲームを作ってみた。</p>
+            <div id="game">
+                <p id="game-title">到着順を予想してみよう！</p>
+                <button id="start">スタート</button>
+                <button id="reset">リセット</button>
+                <div class="animation-area">
+                    <img id="image1" src="car1.png" width="100" height="60" alt="site-logo">
+                </div>
+                <div class="animation-area">
+                    <img id="image2" src="car2.png" width="100" height="60" alt="site-logo">
+                </div>
+                <div class="animation-area">
+                    <img id="image3" src="car3.png" width="100" height="60" alt="site-logo">
+                </div>
+                <div class=box>
+                    <div>結果は・・・</div>
+                    <div id="show-later" class="d-none"></div>
+                </div>
+            </div>
+            <div class="fixed-child-right">
+                <a href="#" id="gotop">トップへ</a>
+            </div>
         </div>
-        <h3>Let's play!</h3>
-        <p>　「random()」メソッドと「round() 」メソッドを使ったミニゲームを作ってみた。</p>
-        <div id = "game">
-          <p id = "game-title">到着順を予想してみよう！</p>
-          <button id="start">スタート</button>
-          <button id="reset">リセット</button>
-          <div class="animation-area">
-            <img id="image1" src="car1.png" width="100" height="60" alt="site-logo">
-          </div>
-          <div class="animation-area">
-            <img id="image2" src="car2.png" width="100" height="60" alt="site-logo">
-          </div>
-          <div class="animation-area">
-            <img id="image3" src="car3.png" width="100" height="60" alt="site-logo">
-          </div>
-          <div class = box>
-          <div>結果は・・・</div>
-          <div id="show-later" class="d-none"></div>
-          </div>
+        <div class="sideber">
+            <div class="profile_box">
+                <div class="box-title">プロフィール</div>
+                <div class="profile_center">
+                    <img alt="" src="parson.png" class="profile_figure">
+                    <div class="profile_name">Naoya Uchiyama</div>
+                </div>
+                <p>＜自己紹介＞
+                    <br>XC-GateやPowerPlatformツール、
+                    <br>pythonなどを使った業務改善を
+                    <br>日々行っています。
+                </p>
+                <ul>
+                    <li>出身地　：静岡県
+                    </li>
+                    <li>趣味　　：映画鑑賞、ゴルフ（予定）
+                    </li>
+                    <li>モットー：価値ある改善を！
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class = "fixed-child-right">
-          <a href="#" id ="gotop">トップへ</a>
-        </div>
-      </div>
-      <div class = "sideber">
-        <div class="profile_box">
-          <div class="box-title">プロフィール</div>
-          <div class="profile_center">
-            <img alt="" src="parson.png" class="profile_figure">
-            <div class="profile_name">Naoya Uchiyama</div>
-          </div>
-          <p>＜自己紹介＞
-            <br>XC-GateやPowerPlatformツール、
-            <br>pythonなどを使った業務改善を
-            <br>日々行っています。
-          </p>
-          <ul>
-            <li>出身地　：静岡県
-            </li>
-            <li>趣味　　：映画鑑賞、ゴルフ（予定）
-            </li>
-            <li>モットー：価値ある改善を！
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
-  </body>
+</body>
+
 </html>
